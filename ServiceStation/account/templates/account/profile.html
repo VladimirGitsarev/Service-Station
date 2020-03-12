@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h2>Profile</h2> 
+<p>Welcome to your profile, {{ request.user.username }}. You can <a href="{% url "edit" %}">edit your profile</a></p> 
+<div class="container-info">
+    <img class="avatar" {% if profile.photo %} src="/media/{{profile.photo}}" {% else %} src="{% static "images/profile.png" %}" {% endif %} alt="">
+    <div class="info">
+        <p>First name: <span> {{request.user.first_name}}</span></p>
+        <p>Last name: <span> {{request.user.last_name}}</span></p>
+        <p>Date of birth: <span> {{profile.date_of_birth}}</span></p>
+        <p>E-mail: <span> {{request.user.email}}</span></p>
+        <p>Phone: <span>{{profile.phone}}</span></p>
+        <p>Address: <span>{{profile.address}}</span></p>
+    </div>
+</div> 
+<h3>My cars:</h3>
+{% if cars.count > 0 %}
+{% for car in cars %}
+<div class="all-cars">
+    <div class="car" id="car-{{car.id}}">   
+        <!-- <img src="{% static "images/service-2.png" %}" alt=""> -->
+        <i class="fa fa-car"></i>
+        <p>Make:  <span><br/>{{car.make}}</span></p>
+        <p>Model: <span><br/>{{car.model}}</span></p>
+        <p>Year: <span><br/>{{car.year}}</span></p>
+        <p>VIN: <span><br>{{car.vin}}</span></p>
+        <a id="delete-car" class="button" data-id="{{car.id}}" href="#">Delete</a>
+    </div>
+</div>
+{% endfor %}
+{%else%}
+<p>You don't have any cars yet</p>
+{% endif %}
+<button id="new-car"><i class="fa fa-car"></i> New car </button>
+<h3 id="new-car-header" style="display: none;">New car:</h3>
+<form id="car-form" action="." method="post" enctype="multipart/form-data">    
+    {{ car_form.as_p }}      
+    {% csrf_token %}    
+    <p><input type="submit" value="Save new car"></p>  
+</form> 
+{% if request.user.is_staff %}
+<div class="admin-rights">
+    <p>You have the rights of the administrator</p> 
+    <a class="button" href="/admin">Open extended admin panel</a>
+</div>
+{% endif %}
+<script src="{% static "js/script.js" %}"></script>
+{% endblock %} 

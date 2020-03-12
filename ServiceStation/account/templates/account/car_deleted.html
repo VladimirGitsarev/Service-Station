@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Car Deleted{% endblock %}
+{% block content %}  
+{% if car %}
+<h1>Car {{ car.make }} deleted!</h1>  
+<p>Car has been successfully deleted. Back to my <a href="{% url "profile" %}">profile</a></p> 
+{% else %}
+<h1>Car can't be deleted!</h1>  
+<p>Car doesn't exist. Back to my <a href="{% url "profile" %}">profile</a></p> 
+{% endif %}
+{% endblock %} 

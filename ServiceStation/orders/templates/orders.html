@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Orders{% endblock %}
+{% block content %}  
+<h1>Orders</h1>  
+{% if request.user.is_staff %}
+<p>All orders</p> 
+{% else %}
+<p>My orders</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}Car Service{% endblock %}
+{% block content %}
+<!---->
+<div class="welcome">
+<div class="container">
+<div class="welcome_sec">
+ <div class="col-md-6 welcome_info">
+      <h3>Welcome</h3>
+      <span></span>
+      <h4>What we offer</h4>
+      <p>We offer full range of garage services to vehicle owners. Our professionals know how to handle a wide range of car services. 
+          Whether you drive a passenger car or medium sized truck or SUV, 
+          our mechanics strive to ensure that your vehicle will be performing at its best before leaving our car shop. 
+          Whether you drive a medium sized truck or passenger car or SUV, our mechanics strive to ensure.</p>
+     <p>If you want the quality you would expect from the dealership, but with a more personal and friendly atmosphere, you have found it.
+        We have invested in all the latest specialist tools and diagnostic software that is specifically tailored for the software in your vehicle.
+        Our auto repair shop is capable of servicing a variety of models. We only do the work that is needed to fix your problem.</p>
+     <a href="about.html" class="hvr-bounce-to-bottom">Read More</a>
+ </div>
+ <div class="col-md-6 welcome_pic">
+     <h2>Why choose us?</h2>
+     <img src="{% static "images/wc.jpg" %}" class="img-responsive" alt=""/>
+     <h3>Whe are the best!</h3>
+     <p>We are one of the leading auto repair shops serving customers.
+        All mechanic services are performed by highly qualified mechanics.</p>
+     <p></p>
+ </div>
+ <div class="clearfix"></div>
+</div>
+</div>
+</div>
+<!---->
+<div class="auto_sec">
+<div class="container">
+<h3>Complete auto service</h3>
+<span></span>
+<div class="auto_sec_grids">
+  <div class="col-md-8 auto_sec_left">						 
+     <img src="{% static "images/pic2.jpg" %}" class="img-responsive" alt=""/>
+     <h5>Our advantage</h5>
+     <p>We make auto repair and maintenance more convenient for you.
+        We are a friendly, helpful and professional group of people.
+        Our professionals know how to handle a wide range of car services.
+        We get the job done right — the first time.
+        Same day service for most repairs and maintenance.</p>
+  </div>
+  <div class="col-md-4 auto_sec_right">
+     <p><a href="gallery.html">Make an appointment</a></p>
+  </div>
+  <div class="clearfix"></div>
+</div>
+</div>
+</div>
+<!---->
+<script>
+$(function () {
+$("#slider2").responsiveSlides({
+auto: true,
+speed: 500,
+namespace: "callbacks2",
+pager: true,
+});
+});
+</script>
+
+<div class="slider btm_sld">
+<div class="container">
+<div class="callbacks2_container">
+ <ul class="rslides" id="slider2">
+         <li>						 
+            <p>Original and licensed high-quality spare parts are available for customers of our car service.</p>	   					  
+         </li>	
+         <li>						 
+            <p>A lot of spare parts and materials can be found in the center`s own warehouse, which saves your time.</p>	  					  
+         </li>
+         <li>						 
+            <p>Contractual original units and assemblies with minimum number kilometers travelled are in stock or can be ordered.</p>	   					  
+         </li>		
+         <li>						 
+            <p>Experienced specialists will help you to choose any spare parts for your car.</p>	   					  
+         </li>
+         <li>						 
+            <p>All auto parts sold at Inter Hofmann are certified and are subject to warranty.</p>	   					  
+         </li>
+ </ul>
+</div>
+</div>
+</div>
+<!---->
+
+<!---->
+<div class="feature_sec">
+<div class="container">
+<div class="feature_head">
+ <h3>Featured News</h3>
+ <span></span>
+</div>
+<ul id="flexiselDemo3">
+     <li>
+        <div class="biseller-column">
+                <a href="#"><img src="{% static "images/pic6.jpg" %}" alt=""/></a>
+                <h4>Donec lacinia</h4>
+                <p>Cras pulvinar iaculis ex. Nullam vitae justo vel sapien malesuada varius ac blandit egestas nec felis. Nunc pharetra. </p>
+                <a class="more hvr-bounce-to-bottom" href="gallery.html">Read More..</a>
+        </div>
+    </li>
+    <li>
+        <div class="biseller-column">
+                <a href="#"><img src="{% static "images/pic5.jpg" %}" alt=""/></a>
+                <h4>Donec lacinia</h4>
+                <p>Cras pulvinar iaculis ex. Nullam vitae justo vel sapien malesuada varius ac blandit egestas nec felis. Nunc pharetra.</p>
+                <a class="more hvr-bounce-to-bottom" href="gallery.html">Read More..</a>
+        </div>
+    </li>
+    <li>
+        <div class="biseller-column">
+                <a href="#"><img src="{% static "images/pic8.jpg" %}" alt=""/></a>
+                <h4>Donec lacinia</h4>
+                <p>Cras pulvinar iaculis ex. Nullam vitae justo vel sapien malesuada varius ac blandit egestas nec felis. Nunc pharetra.</p>
+                <a class="more hvr-bounce-to-bottom" href="gallery.html">Read More..</a>
+        </div>
+    </li>
+    <li>
+        <div class="biseller-column">
+                <a href="#"><img src="{% static "images/pic6.jpg" %}" alt=""/></a>
+                <h4>Donec lacinia</h4>
+                <p>Cras pulvinar iaculis ex. Nullam vitae justo vel sapien malesuada varius ac blandit	egestas nec felis. Nunc pharetra.</p>
+                <a class="more hvr-bounce-to-bottom" href="gallery.html">Read More..</a>
+        </div>
+    </li>
+ </ul>
+    <div class="clearfix"></div>
+<script type="text/javascript">
+     $(window).load(function() {
+        $("#flexiselDemo3").flexisel({
+            visibleItems:4,
+            animationSpeed: 1000,
+            autoPlay: true,
+            autoPlaySpeed: 3000,    		
+            pauseOnHover: true,
+            enableResponsiveBreakpoints: true,
+            responsiveBreakpoints: { 
+                portrait: { 
+                    changePoint:480,
+                    visibleItems:2
+                }, 
+                landscape: { 
+                    changePoint:640,
+                    visibleItems:2
+                },
+                tablet: { 
+                    changePoint:768,
+                    visibleItems:3
+                }
+            }
+        });
+        
+    });
+   </script>
+   <script type="text/javascript" src="{% static "js/jquery.flexisel.js" %}"></script>			 
+</div>
+</div>
+<!---->
+
+{% endblock %}
