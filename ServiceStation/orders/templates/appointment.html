@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}Make an appointment{% endblock %}
+{% block content %}
+<h1>Make an appointment</h1>
+<p>Leave your request and we will connect with you</p>
+<form action="appointment" method="POST">
+    <p><label for="car-select">Select your car:</label></p>
+    {% if cars%}
+    <select name="car-select" id="car-select">
+        {% for car in cars %}
+        <option mame="option" value="{{ car.id }}">{{car.make}} {{car.model}}</option>
+        {% endfor %}
+    </select>
+    {% else %}
+    <ul>
+        <li class="errorlist nonefield">
+            You dont't have any cars.
+            Use the following form to add one.
+        </li>
+    </ul>
+    {{car_form.as_p}}
+    {% endif %}
+    {{ order_form.as_p }}    
+    {% csrf_token %}    
+    <p><input type="submit" value="Submit"></p> 
+</form>
+{% endblock %}

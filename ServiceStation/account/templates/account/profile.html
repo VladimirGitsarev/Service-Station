@@ -16,9 +16,9 @@
     </div>
 </div> 
 <h3>My cars:</h3>
-{% if cars.count > 0 %}
-{% for car in cars %}
 <div class="all-cars">
+    {% if cars.count > 0 %}
+    {% for car in cars %}
     <div class="car" id="car-{{car.id}}">   
         <!-- <img src="{% static "images/service-2.png" %}" alt=""> -->
         <i class="fa fa-car"></i>
@@ -28,14 +28,15 @@
         <p>VIN: <span><br>{{car.vin}}</span></p>
         <a id="delete-car" class="button" data-id="{{car.id}}" href="#">Delete</a>
     </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {%else%}
 <p>You don't have any cars yet</p>
 {% endif %}
 <button id="new-car"><i class="fa fa-car"></i> New car </button>
+
 <h3 id="new-car-header" style="display: none;">New car:</h3>
-<form id="car-form" action="." method="post" enctype="multipart/form-data">    
+<form id="car-form" action="/account/" method="POST" enctype="multipart/form-data">    
     {{ car_form.as_p }}      
     {% csrf_token %}    
     <p><input type="submit" value="Save new car"></p>  
@@ -45,6 +46,8 @@
     <p>You have the rights of the administrator</p> 
     <a class="button" href="/admin">Open extended admin panel</a>
 </div>
+</div>
 {% endif %}
 <script src="{% static "js/script.js" %}"></script>
 {% endblock %} 
+</div>

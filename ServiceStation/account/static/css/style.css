@@ -17,15 +17,21 @@ p {
   margin: 5px 0px;
   font-size: 12pt;
 }
-select{
-  width: 10%;
+
+i{
+  cursor: pointer;
 }
+
+select{
+  width: 15%;
+}
+
 .errorlist {
   color:#cc0033;
   float:left;
   clear:both;
-  padding-left:10px;
-  margin: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .helptext {
@@ -54,13 +60,44 @@ html, body{
    src: url(../fonts/JockeyOne-Regular.ttf) format('truetype');
 }
 
+hr{
+  background-color: #bbb;
+  height: 1px;
+}
+
+.new-order p{
+  padding-bottom: 10px;
+}
+.new-order{
+  margin-bottom: 30px;
+}
+.order{
+  border-radius: 30px;
+  border: solid 3px #f66c53;
+  padding: 0px 30px 30px 30px;
+  margin: 30px 0px;
+  background-clip: padding-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.order i{
+  width: 100px;
+  height: 100px;
+  font-size: 50pt;
+  padding-top: 30px;
+  color: #f66c53;
+  margin: 0px 30px;
+}
+
 .info{
   margin-left: 3%;
   display: flex;
   flex-direction: column;
 }
 
-.info span, .car span{
+.info span, .car span, .order span, .edit-order span{
   color:#f66c53;
 }
 
@@ -74,6 +111,7 @@ a:hover{
   text-decoration: none;
   color: gray;
 }
+
 img.avatar{
   border-radius: 100px;
   width: 200px;
@@ -101,9 +139,8 @@ input[type=submit], button, a.button {
   margin: 0px 0px;
 }
 
-
 .car{
-  border: solid 1px #f66c53;
+  border: solid 3px #f66c53;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}Services{% endblock %}
+{% block content %}
+<h1>Edit order {{order.id}}</h1>  
+<div class="edit-order">
+    <p>User: <span>{{order.user}}, {{order.user.first_name}} {{order.user.last_name}}</span></p>
+    <p>User contacts: <span> {{order.profile.phone}}, {{order.user.email}} </span></p>
+    <p>Car: <span>{{order.car.make}} {{order.car.model}} {{order.car.year}} {{order.car.vin}}</span></p>
+    <p>Current status: <span>{{order.status}} </span></p>
+    <p>Created at: <span>{{order.created_at}}</span></p>
+    <p>User message: <span>{{order.message}}</span></p>
+    <hr>
+    <p>Edit order using the following form:</p>  
+    <form action="/orders/edit/{{order.id}}" method="post" enctype="multipart/form-data">    
+        {{ order_form.as_p }}       
+        {% csrf_token %}    
+        <p><input type="submit" value="Save changes"></p>  
+    </form> 
+</div>
+{% endblock %}

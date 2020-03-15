@@ -6,7 +6,8 @@
         <!-- <link href="{% static "css/base.css" %}" rel="stylesheet">   -->
         <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css' />
         <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' />
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="{% static "css/font-awesome/css/all.css" %}" rel="stylesheet" type='text/css'/>
+        <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script src="{% static "js/jquery.min.js" %}"></script>
@@ -51,6 +52,8 @@
                             <li {% if section == "blog" %} class="active"{% endif %}><a href="/blog/">Blog</a></li> 
                             <li {% if section == "profile" %} class="active"{% endif %}><a href="{% url "profile" %}">My profile</a></li> 
                             <li {% if section == "orders" %} class="active"{% endif %}><a href="/orders/">Orders</a></li>
+                            <li {% if section == "appointment" %} class="active"{% endif %}><a href="/orders/appointment">Appointment</a></li>
+
                         </ul>
                     </div>
                  </nav>					
@@ -79,8 +82,7 @@
                 <p>E-mail: carservice@gmail.com</p>
              </div>
              <div class="clearfix"></div>
-            </div>
-            </div>
+        </div>
         <!-- <div id="header"><span class="logo">Car Service</span>
             {% if request.user.is_authenticated %}    
             <ul class="menu">      

@@ -1,10 +1,73 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Orders{% endblock %}
 {% block content %}  
 <h1>Orders</h1>  
 {% if request.user.is_staff %}
-<p>All orders</p> 
+<h3>All orders:</h3> 
 {% else %}
-<p>My orders</p>
+<div class="new-order">
+<p>Make a new appointment:</p>
+<a href="appointment" class="button">Make an appointment</a>
+</div>
+<h3>My orders:</h3>
+{% endif %}
+
+{% if orders.count %}
+{% for order in orders%}
+<div class="order">
+    <div>
+        <!-- <i class="far fa-clipboard pic"></i> -->
+        {% if order.status == 'Cancelled' %}
+        <i class="far fa-times-circle"></i>
+        {% elif order.status == 'Completed' %}
+        <i class="far fa-check-circle"></i>
+        {% elif order.status == 'Waiting' %}
+        <i class="far fa-clock"></i>
+        {% elif order.status == 'In progress'%}
+        <i class="far fa-play-circle"></i>
+        {% endif %}
+    </div>
+    <div style="flex-grow: 1;">
+        <h3>Order {{order.id}}</h3>
+        {% if request.user.is_staff %}
+        <p>User: <span>{{order.user}}, {{order.user.first_name}} {{order.user.last_name}}</span></p>
+        <p>User contacts: <span> {{order.profile.phone}}, {{order.user.email}} </span></p>
+        {% endif %}
+        <p>Car: <span>{{order.car.make}} {{order.car.model}} {{order.car.year}} {{order.car.vin}}</span></p>
+        <p>Type: <span>{{order.type}}</span></p>
+        <p>Created: <span>{{order.created_at}}</span></p>
+        <p>Status: <span>{{order.status}}</span></p>
+        <p>Message: <span> {{order.message}}</span></p>
+        {% if order.closed_at and order.status != 'Cancelled' %}
+        <p>Price: <span>{{order.price}} $</span></p>
+        <p>Closed at: <span>{{order.closed_at}}</span> </p>
+        {% elif order.status == 'In progress' %}
+        <p>Estimated Price: <span>{{order.price}} $</span></p>
+        {% endif %}
+    </div>
+    {% if request.user.is_staff and order.status == 'In progress' or request.user.is_staff and order.status == 'Waiting' %}
+    <div style="align-self: flex-end; justify-content:space-between;">
+        <a href="edit/{{order.id}}" class="button">Edit</a>
+        <!-- {% if request.user.is_staff and order.status != 'Cancelled' or request.user.is_staff and order.status != 'Completed' %}
+            {% if request.user.is_staff and order.status == 'Waiting' %}    
+            <a href="#" class="button">Accept</a>
+            <a class="button" href="#">Cancel</a>
+            {% elif request.user.is_staff and order.status == 'In progress' %}
+            <a href="#" class="button">Close</a>
+            <a class="button" href="#">Cancel</a>
+            {% endif %}
+        {% else %}
+            {% if order.status == 'Waiting' %}
+            <a class="button" href="#">Cancel</a>
+            {% endif %}
+        {% endif %} -->
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+{% else %}
+<p>You don't have any orders yet</p>
+<a href="appointment" class="button">Make an appointment</a>
 {% endif %}
 {% endblock %}

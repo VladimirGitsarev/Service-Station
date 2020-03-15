@@ -106,8 +106,17 @@ LOGIN_REDIRECT_URL = 'profile'
 
 LOGIN_URL = 'login' 
 
-LOGOUT_URL = 'logout' 
+LOGOUT_URL = 'main' 
 
+EMAIL_HOST = 'smtp.gmail.com' 
+
+EMAIL_HOST_USER = 'vladimir.gitsarev@gmail.com' 
+
+EMAIL_HOST_PASSWORD = 'Djdf1605' 
+
+EMAIL_PORT = 587 
+
+EMAIL_USE_TLS = True 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
