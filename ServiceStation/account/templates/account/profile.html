@@ -15,6 +15,8 @@
         <p>Address: <span>{{profile.address}}</span></p>
     </div>
 </div> 
+
+{% if not request.user.is_staff%}
 <h3>My cars:</h3>
 <div class="all-cars">
     {% if cars.count > 0 %}
@@ -34,14 +36,13 @@
 <p>You don't have any cars yet</p>
 {% endif %}
 <button id="new-car"><i class="fa fa-car"></i> New car </button>
-
 <h3 id="new-car-header" style="display: none;">New car:</h3>
 <form id="car-form" action="/account/" method="POST" enctype="multipart/form-data">    
     {{ car_form.as_p }}      
     {% csrf_token %}    
     <p><input type="submit" value="Save new car"></p>  
 </form> 
-{% if request.user.is_staff %}
+{% else %}
 <div class="admin-rights">
     <p>You have the rights of the administrator</p> 
     <a class="button" href="/admin">Open extended admin panel</a>

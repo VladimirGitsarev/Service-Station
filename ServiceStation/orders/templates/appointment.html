@@ -9,7 +9,7 @@
     {% if cars%}
     <select name="car-select" id="car-select">
         {% for car in cars %}
-        <option mame="option" value="{{ car.id }}">{{car.make}} {{car.model}}</option>
+        <option name="option" value="{{ car.id }}">{{car.make}} {{car.model}}</option>
         {% endfor %}
     </select>
     {% else %}
@@ -19,10 +19,18 @@
             Use the following form to add one.
         </li>
     </ul>
-    {{car_form.as_p}}
+    {{ car_form.as_p }}
     {% endif %}
     {{ order_form.as_p }}    
+    {{ date_form.as_p }}
+    <label for="time-select"> Availiable time: </label>
+    <select name="time-select" id="time-select">
+    {% for time in times%}
+        <option value="{{time}}">{{time}}</option>
+    {% endfor %}
+    </select>
     {% csrf_token %}    
     <p><input type="submit" value="Submit"></p> 
 </form>
+<script src="{% static "js/script.js" %}"></script>
 {% endblock %}

@@ -28,10 +28,25 @@ $(document).on('click','a#delete-car',(function(e){
         });  
     })); 
 
+    $(document).on('change','#id_date_day',(function(e){    
+        e.preventDefault();    
+        $.post('appointment',      
+            {month: $('#id_date_month').val(), day:$('#id_date_day').val(), chosing: true},     
+            function(data){     
+                if (data['status'] == 'ok'){
+                   $('#time-select>option').remove();
+                   data['times'].forEach(element => {
+                       $('#time-select').append(`<option value="${element}">${element}</option>`)
+                   });
+                }   
+            });  
+        })); 
+
 $(document).on('click','i.far',(function(e){   
     $('ul.error').remove();
     $('br.space').remove();
 }))
+
 
 $('#car-form').submit(function(e){
     e.preventDefault();

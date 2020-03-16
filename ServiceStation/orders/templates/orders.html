@@ -3,6 +3,28 @@
 {% block title %}Orders{% endblock %}
 {% block content %}  
 <h1>Orders</h1>  
+<div class="search">
+    <form method="POST">
+       <input type="text" value="" name="query" placeholder="Search...">
+       <input type="submit" value="">
+       {% csrf_token %}  
+        <label for="search-filter">Search filter:</label>
+        <select name="search-filter" id="search-filter">
+            {% if request.user.is_staff%}
+            <option value="First name">First name</option>
+            <option value="Second name">Second name</option>
+            {% endif %}
+            <option value="Car make"> Car make</option>
+            <option value="Car model"> Car model</option>
+            <option value="Car vin">Car VIN</option>
+            <option value="Date">Date</option>
+            <option value="Type">Type</option>
+        </select>
+    </form> 
+    {% if query %}
+    <p>Results for {{search}}: <span>"{{query}}"</span></p>
+    {% endif %}
+</div>
 {% if request.user.is_staff %}
 <h3>All orders:</h3> 
 {% else %}
@@ -12,9 +34,17 @@
 </div>
 <h3>My orders:</h3>
 {% endif %}
-
-{% if orders.count %}
-{% for order in orders%}
+<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav nav-filter">
+        <li {% if not filter %} class="active"{% endif %}><a href="/orders/">All</a></li>
+        <li {% if filter == 'waiting' %} class="active"{% endif %}><a href="/orders/?filter=waiting">Waiting</a></li>
+        <li {% if filter == 'in-progress' %} class="active"{% endif %}><a href="/orders/?filter=in-progress">In progress</a></li>
+        <li {% if filter == 'completed' %} class="active"{% endif %}><a href="/orders/?filter=completed">Comleted</a></li> 
+        <li {% if filter == 'cancelled' %} class="active"{% endif %}><a href="/orders/?filter=cancelled"">Cancelled</a></li> 
+    </ul>
+</div>
+{% if orders.object_list.count %}
+{% for order in orders.object_list%}
 <div class="order">
     <div>
         <!-- <i class="far fa-clipboard pic"></i> -->
@@ -36,14 +66,15 @@
         {% endif %}
         <p>Car: <span>{{order.car.make}} {{order.car.model}} {{order.car.year}} {{order.car.vin}}</span></p>
         <p>Type: <span>{{order.type}}</span></p>
-        <p>Created: <span>{{order.created_at}}</span></p>
+        <p>Created at: <span>{{order.created_at}}</span></p>
         <p>Status: <span>{{order.status}}</span></p>
+        <p>Time: <span>{{order.date.date}},  {{order.date.time}}</span></p>
         <p>Message: <span> {{order.message}}</span></p>
         {% if order.closed_at and order.status != 'Cancelled' %}
         <p>Price: <span>{{order.price}} $</span></p>
         <p>Closed at: <span>{{order.closed_at}}</span> </p>
         {% elif order.status == 'In progress' %}
-        <p>Estimated Price: <span>{{order.price}} $</span></p>
+        <p>Expected Cost: <span>{{order.price}} $</span></p>
         {% endif %}
     </div>
     {% if request.user.is_staff and order.status == 'In progress' or request.user.is_staff and order.status == 'Waiting' %}
@@ -67,7 +98,7 @@
 </div>
 {% endfor %}
 {% else %}
-<p>You don't have any orders yet</p>
-<a href="appointment" class="button">Make an appointment</a>
+<p>There are no orders.</p>
 {% endif %}
+{% include "pagination.html" with page=orders %}
 {% endblock %}
